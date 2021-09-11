@@ -37,10 +37,7 @@ public class Controller {
 
         if(file != null){
             midiUrl = file.getAbsolutePath();
+            field.setText(midiUrl);
         }
-
-
-
-
     }
 }
