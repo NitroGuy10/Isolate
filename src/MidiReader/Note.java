@@ -1,17 +1,20 @@
 package MidiReader;
 
-public class Note
+public class Note implements Comparable
 {
 	private int pitch;
 	private int startTime;
 	private int endTime;
 	
-	public Note()
+	public Note(int pitch, int startTime)
 	{
-		// TODO TEMPORARY
-		pitch = 100;
-		startTime = 5;
-		endTime = 15;
+		this.pitch = pitch;
+		this.startTime = startTime;
+	}
+
+	public void setEndTime (int endTime)
+	{
+		this.endTime = endTime;
 	}
 	
 	public int getStartTime ()
@@ -36,6 +39,19 @@ public class Note
 	
 	public String getPitchName ()
 	{
+		// TODO
 		return "A#4";
+	}
+
+	@Override
+	public String toString ()
+	{
+		return "<Pitch: " + pitch + ", Start: " + startTime + ", End: " + endTime + ">";
+	}
+
+	@Override
+	public int compareTo (Object o)
+	{
+		return startTime - ((Note) o).startTime;
 	}
 }

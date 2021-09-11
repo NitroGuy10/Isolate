@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Algorithm {
 
     MIDIFile audio = new MIDIFile(new File("Midis/imsickofquintuplets.mid"));
-    ArrayList<Track> measures;
+    //ArrayList<Track> measures;
 
     private void getMeasures() {
 
