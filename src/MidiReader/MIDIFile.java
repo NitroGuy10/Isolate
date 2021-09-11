@@ -1,3 +1,5 @@
+package MidiReader;
+
 import java.io.*;
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Jeeometry-Dash.iml" filepath="$PROJECT_DIR$/.idea/Jeeometry-Dash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JeeometryDash.iml" filepath="$PROJECT_DIR$/JeeometryDash.iml" />
     </modules>
   </component>
 </project>
