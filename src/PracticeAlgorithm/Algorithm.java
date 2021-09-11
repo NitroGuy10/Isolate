@@ -7,19 +7,23 @@ import java.util.ArrayList;
 
 public class Algorithm {
 
-    MIDIFile audio = new MIDIFile(new File("Midis/piano_etude.mid"));
-    ArrayList<Note> notes = audio.getNotes();
+    MIDIFile audio;
+    ArrayList<Note> notes;
 
-    private ArrayList<Measure> getMeasures() {
+    public Algorithm(String path) {
+        audio = new MIDIFile(new File(path));
+        notes = audio.getNotes();
+    }
+
+    public ArrayList<Measure> getMeasures() {
         ArrayList<Measure> measures = new ArrayList<>();
-        @SuppressWarnings({})
         int measureLength = notes.stream().mapToInt(Note::getLength).min().orElse(-1) * 16;
         int current = measureLength;
         ArrayList<Note> measureNotes = new ArrayList<>();
         for (Note n : notes) {
             measureNotes.add(n);
             if (n.getEndTime() >= current) {
-                current += current;
+                current += measureLength;
                 measures.add(new Measure(measureNotes));
                 measureNotes.clear();
             }
@@ -30,6 +34,7 @@ public class Algorithm {
         return measures;
     }
     public static void main(String[] args) {
-
+        Algorithm a = new Algorithm("Midis/piano_etude.mid");
+        ArrayList<Measure> measures = a.getMeasures();
     }
 }
