@@ -54,12 +54,6 @@ public class Measure
 
     public static void main(String[] args)
     {
-        List<Note> notes = new ArrayList<Note>();
-        MIDIFile ayaa = new MIDIFile(new File("/Resources/Midis/piano_etude.mid"));
-        notes = ayaa.getNotes();
-
-
-
     }
 }
 
