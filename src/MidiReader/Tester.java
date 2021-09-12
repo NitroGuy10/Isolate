@@ -7,5 +7,12 @@ class Tester
     public static void main (String[] args)
     {
         MIDIFile midiFile = new MIDIFile(new File("Resources/Midis/piano_etude.mid"));
+
+        for (Note n : midiFile.getNotes())
+        {
+            System.out.print(n.toMinString());
+        }
+
+        NoteDisplay.DisplayNotes(midiFile.getNotes());
     }
 }

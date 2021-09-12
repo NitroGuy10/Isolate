@@ -2,6 +2,8 @@ package MidiReader;
 
 public class Note implements Comparable
 {
+	public static final String NOTE_NAMES = "C,C#,D,D#,E,F,F#,G,G#,A,A#,B";
+
 	private int pitch;
 	private int startTime;
 	private int endTime;
@@ -39,14 +41,20 @@ public class Note implements Comparable
 	
 	public String getPitchName ()
 	{
-		// TODO
-		return "A#4";
+		String pitchName = NOTE_NAMES.split(",")[pitch % 12];
+		pitchName += pitch / 12;
+		return pitchName;
 	}
 
 	@Override
 	public String toString ()
 	{
-		return "<Pitch: " + pitch + ", Start: " + startTime + ", End: " + endTime + ">";
+		return "<Pitch: " + pitch + "(" + getPitchName() + ")" + ", Start: " + startTime + ", End: " + endTime + ">";
+	}
+
+	public String toMinString ()
+	{
+		return pitch + "," + getPitchName() + "," + startTime + "," + endTime + ",";
 	}
 
 	@Override
