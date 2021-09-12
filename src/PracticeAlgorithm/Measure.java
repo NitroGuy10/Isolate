@@ -19,6 +19,7 @@ public class Measure
     {
         notes = measure;
         rate();
+        practice();
     }
 
     public ArrayList<Note> getMeasure() { return notes; }
@@ -30,7 +31,7 @@ public class Measure
     private void rate()
     {
         note_freq = notes.size();
-        int chord_count = 0;
+       /** int chord_count = 0;
         for(int i = 0; i < notes.size(); i++)
         {
             for(int j = 0; j < notes.size(); i++)
@@ -42,6 +43,7 @@ public class Measure
                 //if(notes.get(i).)
             }
         }
+        */
 
         List<Integer> pitches = notes.stream().map(Note::getPitch).collect(Collectors.toList());
         double pitch_num = 0.0;
