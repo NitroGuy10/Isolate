@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class BoomerUI implements ActionListener
 {
@@ -44,12 +45,12 @@ public class BoomerUI implements ActionListener
         if (e.getActionCommand().equals("choose input midi"))
         {
             JFileChooser fileChooser = new JFileChooser();
-            int option = fileChooser.showOpenDialog(frame);
-            if (option == JFileChooser.APPROVE_OPTION)
-            {
-                inputMidiFile = fileChooser.getSelectedFile();
-                inputButton.setText(inputMidiFile.getAbsolutePath());
-            }
+            //int option = fileChooser.showOpenDialog(frame);
+            //if (option == JFileChooser.APPROVE_OPTION)
+            //{
+                //inputMidiFile = fileChooser.getSelectedFile();
+                //inputButton.setText(inputMidiFile.getAbsolutePath());
+            //}
         }
     }
 }
