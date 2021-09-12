@@ -109,6 +109,13 @@ public class MIDIFile
 			String line = noteFinder.nextLine();
 			if (line.split(", ")[2].contains("Note_on_c"))
 			{
+				if (unfinishedNotes.containsKey(Integer.parseInt(line.split(", ")[4])))
+				{
+					unfinishedNotes.get(Integer.parseInt(line.split(", ")[4])).setEndTime(Integer.parseInt(line.split(", ")[1]));
+					notes.add(unfinishedNotes.get(Integer.parseInt(line.split(", ")[4])));
+					unfinishedNotes.remove(Integer.parseInt(line.split(", ")[4]));
+				}
+				
 				Note newNote = new Note(Integer.parseInt(line.split(", ")[4]), Integer.parseInt(line.split(", ")[1]));
 				unfinishedNotes.put(Integer.parseInt(line.split(", ")[4]), newNote);
 				finalTimestamp = Math.max(finalTimestamp, Integer.parseInt(line.split(", ")[1]));
