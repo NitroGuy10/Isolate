@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ResultsController">
    <children>
       <ScrollPane prefHeight="380.0" prefWidth="800.0" style="-fx-base: #38C759;">
          <content>
@@ -18,55 +18,11 @@
                <children>
                   <VBox fx:id="firstPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
                      <children>
-                        <Label fx:id="first" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
+                        <Label fx:id="label1" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
                         <AnchorPane prefHeight="60.0" prefWidth="300.0">
                            <children>
-                              <Button fx:id="playButton" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="17.0" />
-                              <ProgressBar fx:id="progressBar" layoutX="74.0" layoutY="21.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="secondPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
-                     <children>
-                        <Label fx:id="first1" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
-                        <AnchorPane prefHeight="60.0" prefWidth="300.0">
-                           <children>
-                              <Button fx:id="playButton1" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="18.0" />
-                              <ProgressBar fx:id="progressBar1" layoutX="74.0" layoutY="21.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="21.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="thirdPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
-                     <children>
-                        <Label fx:id="first2" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
-                        <AnchorPane prefHeight="60.0" prefWidth="300.0">
-                           <children>
-                              <Button fx:id="playButton2" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="18.0" />
-                              <ProgressBar fx:id="progressBar2" layoutX="74.0" layoutY="21.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="21.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="fourthPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
-                     <children>
-                        <Label fx:id="first3" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
-                        <AnchorPane prefHeight="60.0" prefWidth="300.0">
-                           <children>
-                              <Button fx:id="playButton3" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="18.0" />
-                              <ProgressBar fx:id="progressBar3" layoutX="74.0" layoutY="20.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="fifthPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
-                     <children>
-                        <Label fx:id="first4" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
-                        <AnchorPane prefHeight="60.0" prefWidth="300.0">
-                           <children>
-                              <Button fx:id="playButton4" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="18.0" />
-                              <ProgressBar fx:id="progressBar4" layoutX="74.0" layoutY="20.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
+                              <Button fx:id="play1" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#buttonOne" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="17.0" />
+                              <ProgressBar fx:id="progress1" layoutX="74.0" layoutY="21.0" prefHeight="20.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
                            </children>
                         </AnchorPane>
                      </children>
