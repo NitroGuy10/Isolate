@@ -4,6 +4,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,10 @@ public class Main extends Application {
     static AnchorPane urlPane;
     static AnchorPane resultsPane;
 
+    static ScrollPane scrollPane;
+
+
+
     Stage primaryStage;
 
     @Override
@@ -31,40 +36,29 @@ public class Main extends Application {
 
         //urlPane = new UrlPane();
         //resultsPane = new ResultPane();
-
         StackPane stackPane = new StackPane();
-
+        stackPane.setMinHeight(380);
+        stackPane.setMaxWidth(800);
         urlPane = FXMLLoader.load(getClass().getResource("urlSelection.fxml"));
         stackPane.getChildren().add(urlPane);
 
         resultsPane = FXMLLoader.load(getClass().getResource("results.fxml"));
-        resultsPane.setTranslateY(361);
+        resultsPane.setTranslateX(0);
+        resultsPane.setTranslateY(381);
         stackPane.getChildren().add(resultsPane);
 
         root.getChildren().add(stackPane);
-
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
+        primaryStage.setHeight(444);
         primaryStage.show();
-
-
-        System.out.println("urlPane" + urlPane.getTranslateX() + " " + urlPane.getTranslateY());
-        System.out.println("resultsPane" + resultsPane.getTranslateX() + " " + resultsPane.getTranslateY());
-
-        transition();
-
+        stackPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public static void transition(){
 
-
         urlPane.setTranslateX(801);
         resultsPane.setTranslateY(0);
-
-        System.out.println("urlPane" + urlPane.getTranslateX() + " " + urlPane.getTranslateY());
-        System.out.println("resultsPane" + resultsPane.getTranslateX() + " " + resultsPane.getTranslateY());
-
-
     }
 
     /*public NotificationPane(int w, int h) {
@@ -93,9 +87,9 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 800, 380);
 
-
         return scene;
     }
+
 
     private MenuBar getMenuBar(){
 
