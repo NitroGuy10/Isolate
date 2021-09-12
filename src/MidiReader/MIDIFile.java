@@ -149,7 +149,7 @@ public class MIDIFile
 		return 60000000 / tempo;
 	}
 
-	private int generateCSV (File midiFile, File csvFile) throws IOException, InterruptedException
+	private static int generateCSV (File midiFile, File csvFile) throws IOException, InterruptedException
 	{
 		if (csvFile.exists())
 		{
@@ -186,7 +186,7 @@ public class MIDIFile
 		return str.split(findStr, -1).length;
 	}
 
-	public void playMeasure (ArrayList<Note> notes)
+	public static void playMeasure (ArrayList<Note> notes)
 	{
 		int finalTimestamp = -1;
 		for (Note note : notes)
@@ -201,9 +201,7 @@ public class MIDIFile
 					"1, 0, Time_signature, 4, 2, 24, 8\n" +
 					"1, 0, End_track\n" +
 					"2, 0, Start_track\n" +
-					"2, 0, Tempo, ");
-			writer.write(tempo);
-			writer.write("\n2, 0, End_track\n" +
+					"2, 0, Tempo, " + 500000 + "\n2, 0, End_track\n" +
 					"3, 0, Start_track\n" +
 					"3, 0, Title_t, \"measure\"\n");
 
@@ -242,7 +240,7 @@ public class MIDIFile
 		}
 	}
 
-	private int generateMIDI (File midiFile, File csvFile) throws IOException, InterruptedException
+	private static int generateMIDI (File midiFile, File csvFile) throws IOException, InterruptedException
 	{
 		if (midiFile.exists())
 		{
@@ -269,7 +267,7 @@ public class MIDIFile
 		return 0;
 	}
 
-	private class Event implements Comparable
+	private static class Event implements Comparable
 	{
 		public int timestamp;
 		public String event;

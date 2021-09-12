@@ -3,7 +3,7 @@
 1, 0, Time_signature, 4, 2, 24, 8
 1, 0, End_track
 2, 0, Start_track
-2, 0, Tempo, 
+2, 0, Tempo, 500000
 2, 0, End_track
 3, 0, Start_track
 3, 0, Title_t, "measure"
