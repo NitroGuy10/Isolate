@@ -12,7 +12,6 @@ public class Measure
     private double note_freq = 0.0;
     private double note_changes = 0.0;
     private double syncopation = 0.0;
-    private double chords = 0.0;
     private String practice_time = "";
 
     public Measure(ArrayList<Note> measure)
@@ -37,19 +36,7 @@ public class Measure
     private void rate()
     {
         note_freq = notes.size();
-       /** int chord_count = 0;
-        for(int i = 0; i < notes.size(); i++)
-        {
-            for(int j = 0; j < notes.size(); i++)
-            {
-                if(notes.get(i).equals(notes.get(j)))
-                {
-                    continue;
-                }
-                //if(notes.get(i).)
-            }
-        }
-        */
+
 
         List<Integer> pitches = notes.stream().map(Note::getPitch).collect(Collectors.toList());
         double pitch_num = 0.0;
