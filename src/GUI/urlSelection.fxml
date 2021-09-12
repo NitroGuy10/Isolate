@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="789.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="800.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.URLController">
    <children>
-      <Button id="button" layoutX="596.0" layoutY="156.0" mnemonicParsing="false" onAction="#browse" prefHeight="34.0" prefWidth="129.0" text="Browse" />
-      <TextField fx:id="field" layoutX="58.0" layoutY="156.0" prefHeight="34.0" prefWidth="481.0" />
-      <Label fx:id="label" layoutX="67.0" layoutY="65.0" prefHeight="54.0" prefWidth="347.0" style="-fx-font-size: 24;" text="Enter the directory of the file" />
+      <Button id="button" layoutX="621.0" layoutY="217.0" mnemonicParsing="false" onAction="#browse" prefHeight="34.0" prefWidth="129.0" text="Browse" />
+      <TextField fx:id="field" layoutX="36.0" layoutY="217.0" prefHeight="34.0" prefWidth="481.0" />
+      <Label fx:id="label" layoutX="140.0" layoutY="105.0" prefHeight="54.0" prefWidth="347.0" style="-fx-font-size: 24;" text="Enter the directory of the file" />
    </children>
 </AnchorPane>
