@@ -6,8 +6,7 @@ import java.util.*;
 
 public class MIDIFile
 {
-	private ArrayList<Note> notes;
-	private String timeSignature;
+	private final ArrayList<Note> notes;
 	private int tempo;
 
 	
@@ -56,7 +55,7 @@ public class MIDIFile
 
 
 		Scanner trackFinder = new Scanner(System.in);
-		String trackContents = "";
+		StringBuilder trackContents = new StringBuilder();
 		final String desiredTrack = "3";
 		try {
 			trackFinder = new Scanner(csvFile);
@@ -72,17 +71,17 @@ public class MIDIFile
 			String line = trackFinder.nextLine();
 			if (line.split(", ")[0].equals(desiredTrack) && line.split(", ")[2].contains("Start_track"))
 			{
-				trackContents = line;
+				trackContents = new StringBuilder(line);
 				while (trackFinder.hasNextLine())
 				{
 					String nextLine = trackFinder.nextLine();
-					trackContents += "\n" + nextLine;
+					trackContents.append("\n").append(nextLine);
 					if (nextLine.contains("End_track"))
 					{
 						break;
 					}
 				}
-				trackContents += "\n-1, -1, Note_off_c, -1, -1, -1";
+				trackContents.append("\n-1, -1, Note_off_c, -1, -1, -1");
 			}
 		}
 		trackFinder.close();
@@ -90,7 +89,7 @@ public class MIDIFile
 
 		notes = new ArrayList<>();
 		HashMap<Integer, Note> unfinishedNotes = new HashMap<>();
-		Scanner noteFinder = new Scanner(trackContents);
+		Scanner noteFinder = new Scanner(trackContents.toString());
 		while (noteFinder.hasNextLine())
 		{
 			String line = noteFinder.nextLine();
@@ -129,6 +128,8 @@ public class MIDIFile
 		System.out.println("Midicsv.exe will now be run");
 		Runtime runtime = Runtime.getRuntime();
 		Process midicsvProcess = runtime.exec("Resources/midicsv/Midicsv.exe " + midiFile.getAbsolutePath() + " " + csvFile.getAbsolutePath());
+		System.out.println("Resources/midicsv/Midicsv.exe " + midiFile.getAbsolutePath() + " " + csvFile.getAbsolutePath());
+
 		int processReturn = midicsvProcess.waitFor();
 		midicsvProcess.destroy();
 		System.out.println("Subprocess destroyed\nSubprocess returned a value of " + processReturn);
