@@ -7,18 +7,20 @@ import java.util.stream.Collectors;
 
 public class Measure
 {
-    private ArrayList<Note> notes;
+    private final ArrayList<Note> notes;
     private double rating = 0.0;
 
     public Measure(ArrayList<Note> measure)
     {
         notes = measure;
-        getRating();
+        rate();
     }
 
     public ArrayList<Note> getMeasure() { return notes; }
 
-    private void getRating()
+    public double getRating() { return rating; }
+
+    private void rate()
     {
         rating = notes.size();
 
@@ -41,9 +43,15 @@ public class Measure
             }
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "Measure Notes: " + notes + "\n Measure rating: " + rating;
+    }
+
     public static void main(String[] args)
     {
-
     }
 }
 
