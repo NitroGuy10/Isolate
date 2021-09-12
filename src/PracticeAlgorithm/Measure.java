@@ -59,7 +59,7 @@ public class Measure
 
         for(int i = 0; i < pitches.size() - 1; i++)
         {
-            pitch_num += pitches.get(i) - pitches.get(i + 1);
+            pitch_num += Math.abs(pitches.get(i) - pitches.get(i + 1));
         }
 
         pitch_num /= pitches.size();
@@ -78,15 +78,15 @@ public class Measure
 
     private void practice()
     {
-        if(rating <= 5)
+        if(rating <= 18)
         {
             practice_time = "< 5 minutes";
         }
-        else if(rating <= 10)
+        else if(rating <= 25)
         {
             practice_time = "5-10 minutes";
         }
-        else if(rating <= 20)
+        else if(rating <= 40)
         {
             practice_time = "10-30 minutes";
         }

@@ -29,7 +29,7 @@ public class ResultsController {
         String firstBox = "First Measure\n\n" + toStrings(getTimes.get(0), ratings.get(0));
         label1.setText(firstBox);
 
-        String secondBox = "Second Measure\n\n" + toStrings(getTimes.get(2), ratings.get(1));
+        String secondBox = "Second Measure\n\n" + toStrings(getTimes.get(1), ratings.get(1));
         label2.setText(secondBox);
 
         String thirdBox = "Third Measure\n\n" + toStrings(getTimes.get(2), ratings.get(2));

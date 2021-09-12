@@ -32,7 +32,7 @@ public class URLController {
         fChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MIDI Files", "*.mid"));
 
         Stage stage = (Stage) anchor.getScene().getWindow();
-
+        fChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/Resources/Midis"));
         File file = fChooser.showOpenDialog(stage);
 
         if(file != null){
