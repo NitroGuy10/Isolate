@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class Controller {
+public class URLController {
 
     public Button button;
     public Label label;
@@ -37,6 +37,7 @@ public class Controller {
         if(file != null){
             midiUrl = file.getAbsolutePath();
             field.setText(midiUrl);
+            Main.transition();
         }
     }
 }
