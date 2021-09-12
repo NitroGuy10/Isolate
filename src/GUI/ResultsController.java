@@ -43,7 +43,7 @@ public class ResultsController {
     public String toStrings(String times, double[] rating){
         String string = "";
 
-        string += "Practice for " + times + " minutes\n";
+        string += "Practice for " + times + "\n";
         string += "Fingering Difficulty Rating of " + rating[0] + "\n";
         string += "Intonation Difficulty Rating of " + rating[1] + "\n";
         string += "Rhythm Difficulty Rating of " + rating[2] + "\n";
