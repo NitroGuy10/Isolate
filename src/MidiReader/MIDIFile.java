@@ -9,11 +9,11 @@ public class MIDIFile
 	private final ArrayList<Note> notes;
 	private int tempo;
 
+	public static File csvFile = new File("Resources/temp/csv");
+
 	
 	public MIDIFile (File midiFile)
 	{
-		File csvFile = new File("Resources/temp/csv");
-
 		try
 		{
 			int generateCSVReturn = generateCSV(midiFile, csvFile);
@@ -103,6 +103,7 @@ public class MIDIFile
 		notes = new ArrayList<>();
 		HashMap<Integer, Note> unfinishedNotes = new HashMap<>();
 		Scanner noteFinder = new Scanner(bestTrack);
+		int finalTimestamp = -1;
 		while (noteFinder.hasNextLine())
 		{
 			String line = noteFinder.nextLine();
@@ -110,6 +111,7 @@ public class MIDIFile
 			{
 				Note newNote = new Note(Integer.parseInt(line.split(", ")[4]), Integer.parseInt(line.split(", ")[1]));
 				unfinishedNotes.put(Integer.parseInt(line.split(", ")[4]), newNote);
+				finalTimestamp = Math.max(finalTimestamp, Integer.parseInt(line.split(", ")[1]));
 			}
 			else if (line.split(", ")[2].contains("Note_off_c"))
 			{
@@ -119,7 +121,14 @@ public class MIDIFile
 					notes.add(unfinishedNotes.get(Integer.parseInt(line.split(", ")[4])));
 					unfinishedNotes.remove(Integer.parseInt(line.split(", ")[4]));
 				}
+				finalTimestamp = Math.max(finalTimestamp, Integer.parseInt(line.split(", ")[1]));
 			}
+		}
+
+		for (Note dumbNotes : unfinishedNotes.values())
+		{
+			dumbNotes.setEndTime(finalTimestamp);
+			notes.add(dumbNotes);
 		}
 		noteFinder.close();
 		Collections.sort(notes);
@@ -166,5 +175,33 @@ public class MIDIFile
 	private int countMatches (String str, String findStr)
 	{
 		return str.split(findStr, -1).length;
+	}
+
+	public void playMeasure (ArrayList<Note> notes)
+	{
+		try
+		{
+			FileWriter writer = new FileWriter(csvFile);
+			writer.write("0, 0, Header, 1, 3, 96\n" +
+					"1, 0, Start_track\n" +
+					"1, 0, Time_signature, 4, 2, 24, 8\n" +
+					"1, 0, End_track\n" +
+					"2, 0, Start_track\n" +
+					"2, 0, Tempo, ");
+			writer.write(tempo);
+			writer.write("\n2, 0, End_track\n" +
+					"3, 0, Start_track\n" +
+					"3, 0, Title_t, \"measure\"\n");
+			for (Note note : notes)
+			{
+				writer.write("3, " + note.getStartTime() + ", Note_on_c, 0, " + note.getPitch() + ", 127");
+				writer.write("3, " + note.getEndTime() + ", Note_off_c, 0, " + note.getPitch() + ", 0");
+			}
+			writer.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Unable to create measure midi file");
+		}
 	}
 }
