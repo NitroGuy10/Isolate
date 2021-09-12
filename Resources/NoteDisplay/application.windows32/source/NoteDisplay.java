@@ -72,12 +72,13 @@ public void draw ()
   int totalLength = maxTime + 1 - minTime;
   minPitch--;
   maxPitch++;
+  
   for (Note note : notes)
   {
-    rect(
+    rect( //<>//
     ((note.startTime - minTime) / (totalLength + 0.0f)) * width,
     height - (((note.pitch - minPitch) / (pitchRange + 0.0f)) * height),
-    (((note.endTime - note.startTime) - minTime) / (totalLength + 0.0f)) * width,
+    (((note.endTime - note.startTime)) / (totalLength + 0.0f)) * width,
     (1.0f / pitchRange) * height
     );
   }
