@@ -15,6 +15,10 @@ public class Algorithm {
         notes = audio.getNotes();
     }
 
+    public Algorithm(ArrayList<Note> n) {
+        notes = n;
+    }
+
     public ArrayList<Measure> getMeasures() {
         ArrayList<Measure> measures = new ArrayList<>();
         int measureLength = notes.stream().mapToInt(Note::getLength).min().orElse(-1) * 16;
@@ -33,8 +37,10 @@ public class Algorithm {
         }
         return measures;
     }
+
     public static void main(String[] args) {
-        Algorithm a = new Algorithm("Midis/piano_etude.mid");
+        Algorithm a = new Algorithm("Resources/Midis/piano_etude.mid");
         ArrayList<Measure> measures = a.getMeasures();
+        System.out.println(measures.toString());
     }
 }
