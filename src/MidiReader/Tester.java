@@ -15,6 +15,6 @@ class Tester
 
         NoteDisplay.DisplayNotes(midiFile.getNotes());
 
-        midiFile.playMeasure(midiFile.getNotes());
+        MIDIFile.playMeasure(midiFile.getNotes());
     }
 }
