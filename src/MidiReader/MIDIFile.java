@@ -1,5 +1,6 @@
 package MidiReader;
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
@@ -10,6 +11,7 @@ public class MIDIFile
 	private int tempo;
 
 	public static File csvFile = new File("Resources/temp/csv");
+	public static File tempMidiFile = new File("Resources/temp/measure.mid");
 
 	
 	public MIDIFile (File midiFile)
@@ -115,7 +117,7 @@ public class MIDIFile
 					notes.add(unfinishedNotes.get(Integer.parseInt(line.split(", ")[4])));
 					unfinishedNotes.remove(Integer.parseInt(line.split(", ")[4]));
 				}
-				
+
 				Note newNote = new Note(Integer.parseInt(line.split(", ")[4]), Integer.parseInt(line.split(", ")[1]));
 				unfinishedNotes.put(Integer.parseInt(line.split(", ")[4]), newNote);
 				finalTimestamp = Math.max(finalTimestamp, Integer.parseInt(line.split(", ")[1]));
@@ -186,6 +188,11 @@ public class MIDIFile
 
 	public void playMeasure (ArrayList<Note> notes)
 	{
+		int finalTimestamp = -1;
+		for (Note note : notes)
+		{
+			finalTimestamp = Math.max(finalTimestamp, note.getEndTime());
+		}
 		try
 		{
 			FileWriter writer = new FileWriter(csvFile);
@@ -199,16 +206,82 @@ public class MIDIFile
 			writer.write("\n2, 0, End_track\n" +
 					"3, 0, Start_track\n" +
 					"3, 0, Title_t, \"measure\"\n");
+
+			ArrayList<Event> events = new ArrayList<>();
 			for (Note note : notes)
 			{
-				writer.write("3, " + note.getStartTime() + ", Note_on_c, 0, " + note.getPitch() + ", 127");
-				writer.write("3, " + note.getEndTime() + ", Note_off_c, 0, " + note.getPitch() + ", 0");
+				events.add(new Event(note.getStartTime(), "3, " + note.getStartTime() + ", Note_on_c, 0, " + note.getPitch() + ", 127\n"));
+				events.add(new Event(note.getEndTime(), "3, " + note.getEndTime() + ", Note_off_c, 0, " + note.getPitch() + ", 0\n"));
 			}
+			Collections.sort(events);
+			for (Event event : events)
+			{
+				writer.write(event.event);
+			}
+			writer.write("3, " + finalTimestamp + ", End_track\n" +
+					"0, 0, End_of_file\n");
+
 			writer.close();
+
+			generateMIDI(tempMidiFile, csvFile);
 		}
 		catch (Exception e)
 		{
 			System.out.println("Unable to create measure midi file");
+			return;
+		}
+		System.out.println("Created midi file!!!");
+
+		try
+		{
+			Desktop.getDesktop().open(new File("Resources/temp/measure.mid"));
+		}
+		catch (Exception e)
+		{
+			System.out.println("Cannot open midi file :(");
+		}
+	}
+
+	private int generateMIDI (File midiFile, File csvFile) throws IOException, InterruptedException
+	{
+		if (midiFile.exists())
+		{
+			midiFile.delete();
+			System.out.println("Preexisting MIDI file destroyed");
+		}
+		System.out.println("Csvmidi.exe will now be run");
+		Runtime runtime = Runtime.getRuntime();
+		Process midicsvProcess = runtime.exec("Resources/midicsv/Csvmidi.exe " + csvFile.getAbsolutePath() + " " + midiFile.getAbsolutePath());
+		System.out.println("Resources/midicsv/Csvmidi.exe " + csvFile.getAbsolutePath() + " " + midiFile.getAbsolutePath());
+
+		int processReturn = midicsvProcess.waitFor();
+		midicsvProcess.destroy();
+		System.out.println("Subprocess destroyed\nSubprocess returned a value of " + processReturn);
+		if (processReturn == 0)
+		{
+			System.out.println(".mid file sucessfully generated");
+		}
+		else
+		{
+			System.out.println("Something went horribly wrong...");
+			return -1;
+		}
+		return 0;
+	}
+
+	private class Event implements Comparable
+	{
+		public int timestamp;
+		public String event;
+		public Event (int timestamp, String event)
+		{
+			this.timestamp = timestamp;
+			this.event = event;
+		}
+
+		@Override
+		public int compareTo(Object o) {
+			return timestamp - ((Event) o).timestamp;
 		}
 	}
 }
