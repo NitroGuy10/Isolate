@@ -24,7 +24,6 @@ public class Controller {
 
     }
 
-
     public void browse(ActionEvent actionEvent) {
 
         final FileChooser fChooser = new FileChooser();
