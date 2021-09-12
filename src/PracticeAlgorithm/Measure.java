@@ -28,6 +28,12 @@ public class Measure
 
     public String getTimes() { return practice_time; }
 
+    public double getFrequency() { return note_freq; }
+
+    public double getChanges() { return note_changes; }
+
+    public double getSyncopation() { return syncopation; }
+
     private void rate()
     {
         note_freq = notes.size();
