@@ -1,5 +1,8 @@
 package PracticeAlgorithm;
 import MidiReader.Note;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,15 +27,15 @@ public class Measure
 
     public ArrayList<Note> getMeasure() { return notes; }
 
-    public double getRating() { return rating; }
+    public double getRating() { return (int) (rating * 100) / 100.0; }
 
     public String getTimes() { return practice_time; }
 
-    public double getFrequency() { return note_freq; }
+    public double getFrequency() { return (int) (note_freq * 100) / 100.0; }
 
-    public double getChanges() { return note_changes; }
+    public double getChanges() { return (int) (note_changes * 100) / 100.0; }
 
-    public double getSyncopation() { return syncopation; }
+    public double getSyncopation() { return (int) (syncopation * 100) / 100.0; }
 
     private void rate()
     {
@@ -96,7 +99,7 @@ public class Measure
     @Override
     public String toString()
     {
-        return "Measure Notes: " + notes + "\n Measure rating: " + rating;
+        return "Measure Notes: " + notes + "\n Measure rating: " + getRating();
     }
 
     public static void main(String[] args)
