@@ -55,8 +55,6 @@ public class MIDIFile
 
 
 		Scanner trackFinder = new Scanner(System.in);
-		StringBuilder trackContents = new StringBuilder();
-		final String desiredTrack = "3";
 		try {
 			trackFinder = new Scanner(csvFile);
 		}
@@ -66,12 +64,14 @@ public class MIDIFile
 			e.printStackTrace();
 			System.exit(1);
 		}
+
+		ArrayList<String> allTracks = new ArrayList<>();
 		while (trackFinder.hasNextLine())
 		{
 			String line = trackFinder.nextLine();
-			if (line.split(", ")[0].equals(desiredTrack) && line.split(", ")[2].contains("Start_track"))
+			if (line.split(", ")[2].contains("Start_track"))
 			{
-				trackContents = new StringBuilder(line);
+				StringBuilder trackContents = new StringBuilder(line);
 				while (trackFinder.hasNextLine())
 				{
 					String nextLine = trackFinder.nextLine();
@@ -82,14 +82,27 @@ public class MIDIFile
 					}
 				}
 				trackContents.append("\n-1, -1, Note_off_c, -1, -1, -1");
+
+				allTracks.add(trackContents.toString());
 			}
 		}
 		trackFinder.close();
 		System.out.println("Track information stored");
 
+		String bestTrack = allTracks.get(0);
+		for (String track : allTracks)
+		{
+			if (countMatches(track, "Note_on_c") > countMatches(bestTrack, "Note_on_c"))
+			{
+				bestTrack = track;
+			}
+		}
+
+		System.out.println("The best track is: " + allTracks.indexOf(bestTrack));
+
 		notes = new ArrayList<>();
 		HashMap<Integer, Note> unfinishedNotes = new HashMap<>();
-		Scanner noteFinder = new Scanner(trackContents.toString());
+		Scanner noteFinder = new Scanner(bestTrack);
 		while (noteFinder.hasNextLine())
 		{
 			String line = noteFinder.nextLine();
@@ -148,5 +161,10 @@ public class MIDIFile
 	public ArrayList<Note> getNotes ()
 	{
 		return notes;
+	}
+
+	private int countMatches (String str, String findStr)
+	{
+		return str.split(findStr, -1).length;
 	}
 }
