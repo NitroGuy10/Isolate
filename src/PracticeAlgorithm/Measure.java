@@ -67,7 +67,7 @@ public class Measure
         rating = note_freq + note_changes + syncopation;
     }
 
-    public void practice()
+    private void practice()
     {
         if(rating <= 5)
         {
