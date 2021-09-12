@@ -4,15 +4,19 @@ import MidiReader.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Algorithm {
 
     MIDIFile audio;
     ArrayList<Note> notes;
+    ArrayList<Measure> measures;
 
     public Algorithm(String path) {
         audio = new MIDIFile(new File(path));
         notes = audio.getNotes();
+        measures = getMeasures();
     }
 
     public ArrayList<Measure> getMeasures() {
@@ -34,12 +38,25 @@ public class Algorithm {
         return measures;
     }
 
+    public List<String> getTimes() {
+        return measures.stream().map(Measure::getTimes).collect(Collectors.toList());
+    }
+
+    public List<double[]> getRatings() {
+        return measures.stream().map(x -> new double[] {x.getFrequency(), x.getChanges(), x.getSyncopation(), x.getRating()}).collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
-        Algorithm a = new Algorithm("Resources/Midis/piano_etude.mid");
+        Algorithm a = new Algorithm("Resources/Midis/imsickofquintuplets.mid");
         System.out.println(a.notes.size());
         ArrayList<Measure> measures = a.getMeasures();
+        System.out.println(measures.size());
         for (Measure m : measures) {
             System.out.println(m);
+
+//            NoteDisplay.DisplayNotes(m.getMeasure());
         }
+//        MIDIFile.playMeasure(measures.get(3).getMeasure());
+
     }
 }

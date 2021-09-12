@@ -188,10 +188,12 @@ public class MIDIFile
 
 	public static void playMeasure (ArrayList<Note> notes)
 	{
-		int finalTimestamp = -1;
+		int finalTimestamp = notes.get(0).getStartTime();
+		int firstTimestamp = notes.get(0).getStartTime();
 		for (Note note : notes)
 		{
 			finalTimestamp = Math.max(finalTimestamp, note.getEndTime());
+			firstTimestamp = Math.min(firstTimestamp, note.getStartTime());
 		}
 		try
 		{
@@ -208,8 +210,8 @@ public class MIDIFile
 			ArrayList<Event> events = new ArrayList<>();
 			for (Note note : notes)
 			{
-				events.add(new Event(note.getStartTime(), "3, " + note.getStartTime() + ", Note_on_c, 0, " + note.getPitch() + ", 127\n"));
-				events.add(new Event(note.getEndTime(), "3, " + note.getEndTime() + ", Note_off_c, 0, " + note.getPitch() + ", 0\n"));
+				events.add(new Event(note.getStartTime() - firstTimestamp, "3, " + (note.getStartTime() - firstTimestamp) + ", Note_on_c, 0, " + note.getPitch() + ", 127\n"));
+				events.add(new Event(note.getEndTime() - firstTimestamp, "3, " + (note.getEndTime() - firstTimestamp) + ", Note_off_c, 0, " + note.getPitch() + ", 0\n"));
 			}
 			Collections.sort(events);
 			for (Event event : events)

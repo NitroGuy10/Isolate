@@ -6,7 +6,7 @@ class Tester
 {
     public static void main (String[] args)
     {
-        MIDIFile midiFile = new MIDIFile(new File("Resources/Midis/imsickofquintuplets.mid"));
+        MIDIFile midiFile = new MIDIFile(new File("Resources/Midis/bad.mid"));
 
         for (Note n : midiFile.getNotes())
         {
@@ -15,6 +15,6 @@ class Tester
 
         NoteDisplay.DisplayNotes(midiFile.getNotes());
 
-        midiFile.playMeasure(midiFile.getNotes());
+        MIDIFile.playMeasure(midiFile.getNotes());
     }
 }
