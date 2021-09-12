@@ -40,6 +40,7 @@ public class Algorithm {
         ArrayList<Measure> measures = a.getMeasures();
         for (Measure m : measures) {
             System.out.println(m);
+            NoteDisplay.DisplayNotes(m.getMeasure());
         }
     }
 }
