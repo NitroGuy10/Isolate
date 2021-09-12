@@ -3,7 +3,6 @@ import MidiReader.Note;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.DoubleSummaryStatistics;
 
 
 public class Measure
@@ -34,9 +33,9 @@ public class Measure
         pitch_num /= pitches.size();
         rating += pitch_num;
 
-        for(int i = 0; i < pitches.size(); i++)
+        for (Integer pitch : pitches)
         {
-            if((pitches.get(i) + 30) % 60 == 0)
+            if ((pitch + 30) % 60 == 0)
             {
                 rating += 1;
             }
