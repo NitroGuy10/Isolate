@@ -18,7 +18,11 @@
                <children>
                   <VBox fx:id="firstPanel" prefHeight="325.0" prefWidth="300.0" style="-fx-base: #38C759; -fx-background-color: #DE88CA; -fx-background-radius: 18 18 18 18; -fx-border-radius: #38C759;">
                      <children>
-                        <Label fx:id="label1" prefHeight="262.0" prefWidth="300.0" text="Text 1" />
+                        <Label fx:id="label1" prefHeight="262.0" prefWidth="300.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Text 1" wrapText="true">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </Label>
                         <AnchorPane prefHeight="60.0" prefWidth="300.0">
                            <children>
                               <Button fx:id="play1" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#buttonOne" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="17.0" />

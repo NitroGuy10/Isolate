@@ -38,16 +38,12 @@ public class Main extends Application {
         Scene scene = createScene();
 
         urlPane = FXMLLoader.load(getClass().getResource("urlSelection.fxml"));
-        resultsPane = FXMLLoader.load(getClass().getResource("results.fxml"));
 
         stackPane = new StackPane();
         stackPane.setMinHeight(380);
         stackPane.setMaxWidth(800);
         stackPane.getChildren().add(urlPane);
-        stackPane.getChildren().add(resultsPane);
 
-        resultsPane.setTranslateX(0);
-        resultsPane.setTranslateY(381);
 
         root.getChildren().add(stackPane);
         primaryStage.setScene(scene);
@@ -57,9 +53,16 @@ public class Main extends Application {
         stackPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
-    public static void transition(String s){
-
+    public static void transition(String s) throws IOException {
         URL = s;
+        resultsPane = FXMLLoader.load(Main.class.getResource("results.fxml"));
+
+        stackPane.getChildren().add(resultsPane);
+
+        resultsPane.setTranslateX(0);
+        resultsPane.setTranslateY(381);
+
+
 
         TranslateTransition t1 = new TranslateTransition(Duration.seconds(1), urlPane);
         TranslateTransition t2 = new TranslateTransition(Duration.seconds(1), resultsPane);
@@ -74,6 +77,8 @@ public class Main extends Application {
         }
         t1.play();
         t2.play();
+
+
 
         //urlPane.setTranslateX(801);
         //resultsPane.setTranslateY(0);

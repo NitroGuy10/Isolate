@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 
 public class URLController {
 
@@ -23,13 +24,6 @@ public class URLController {
 
     public String midiUrl;
     public ImageView loading;
-
-    public void initialize(){
-
-        //loading.setTranslateX(900);
-        //loading.setTranslateY(400);
-
-    }
 
     public void browse(ActionEvent actionEvent) {
 
@@ -55,7 +49,12 @@ public class URLController {
         rt.setByAngle(30);
         rt.setToAngle(1080);
         rt.setOnFinished(e->{
-            Main.transition(midiUrl);
+            try {
+                System.out.println(midiUrl);
+                Main.transition(midiUrl);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
 
         rt.play();
